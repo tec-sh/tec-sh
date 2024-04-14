@@ -104,6 +104,59 @@ const items = [
 <template>
   <div class="bg-white">
     <main class="isolate">
+      <!-- Demo Section -->
+      <section
+        id="demo"
+        v-if="app"
+        class="grid min-h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8"
+      >
+        <div class="text-center">
+          <img src="/tec.svg" alt="Tec.sh" class="w-20 mx-auto mb-8" />
+          <p class="text-base font-semibold">We are trying to redirect to</p>
+          <h1
+            class="mt-4 text-3xl font-thin tracking-tight text-gray-900 sm:text-5xl"
+          >
+            {{ app_url }}
+          </h1>
+
+          <p class="mt-6 text-base leading-7 text-gray-600">
+            Sorry, Our demo can't be loaded in frame, please click the button
+            below
+          </p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              target="_top"
+              :href="app_url"
+              class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              >Open Demo</a
+            >
+            <a
+              target="_blank"
+              :href="app_url"
+              class="text-sm font-semibold text-gray-900 rounded-md hover:bg-gray-100 px-3.5 py-2.5"
+              >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+          <div v-if="app_old_url" class="mt-16">
+            <p class="text-base font-semibold">Previous Version Demo</p>
+            <div class="mt-6 flex items-center justify-center gap-x-6">
+              <a
+                :href="app_old_url"
+                target="_top"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                >Open Demo</a
+              >
+              <a
+                target="_blank"
+                :href="app_old_url"
+                class="text-sm font-semibold text-gray-900"
+                >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Hero section -->
       <div class="relative isolate -z-10">
         <svg
@@ -249,59 +302,6 @@ const items = [
           </div>
         </div>
       </div>
-
-      <!-- Demo Section -->
-      <section
-        id="demo"
-        v-if="app"
-        class="grid min-h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8"
-      >
-        <div class="text-center">
-          <img src="/tec.svg" alt="Tec.sh" class="w-20 mx-auto mb-8" />
-          <p class="text-base font-semibold">We are trying to redirect to</p>
-          <h1
-            class="mt-4 text-3xl font-thin tracking-tight text-gray-900 sm:text-5xl"
-          >
-            {{ app_url }}
-          </h1>
-
-          <p class="mt-6 text-base leading-7 text-gray-600">
-            Sorry, Our demo can't be loaded in frame, please click the button
-            below
-          </p>
-          <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              target="_top"
-              :href="app_url"
-              class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-              >Open Demo</a
-            >
-            <a
-              target="_blank"
-              :href="app_url"
-              class="text-sm font-semibold text-gray-900 rounded-md hover:bg-gray-100 px-3.5 py-2.5"
-              >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
-            >
-          </div>
-          <div v-if="app_old_url" class="mt-16">
-            <p class="text-base font-semibold">Previous Version Demo</p>
-            <div class="mt-6 flex items-center justify-center gap-x-6">
-              <a
-                :href="app_old_url"
-                target="_top"
-                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                >Open Demo</a
-              >
-              <a
-                target="_blank"
-                :href="app_old_url"
-                class="text-sm font-semibold text-gray-900"
-                >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Other items section -->
       <div class="mx-auto mt-32 max-w-6xl px-6 sm:mt-40 lg:px-8">
