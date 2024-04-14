@@ -25,6 +25,8 @@ onMounted(() => {
     app_url.value = "https://forum.tec.sh";
   } else if (app.value == "sbm") {
     app_url.value = "https://sbm.tec.sh";
+  } else if (app.value == "wims") {
+    app_url.value = "https://wims.tec.sh";
   } else if (app.value == "tsms") {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
