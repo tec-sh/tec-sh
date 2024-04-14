@@ -333,7 +333,7 @@ const items = [
                 <h3 class="mb-2 font-semibold text-slate-900">
                   <a
                     class="before:absolute before:-inset-3 before:rounded-2xl sm:before:-inset-4"
-                    href="/docs/utility-first"
+                    :href="item.link"
                     >{{ item.name
                     }}<svg
                       viewBox="0 0 3 6"
