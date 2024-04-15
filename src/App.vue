@@ -3,6 +3,7 @@ import { defineComponent, h, ref, onMounted } from "vue";
 
 const app = ref(null);
 const app_url = ref(null);
+const is_parent = ref(false);
 const app_old_url = ref(null);
 
 onMounted(() => {
@@ -31,6 +32,15 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
+  }
+
+  if (urlParams.has("sub")) {
+    app_url.value = app_url.value + "/" + urlParams.get("sub");
+  }
+
+  if (window.self === window.top) {
+    is_parent.value = true;
+    window.location.replace(app_url.value);
   }
 });
 
@@ -108,7 +118,7 @@ const items = [
       <section
         id="demo"
         v-if="app"
-        class="grid min-h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8"
+        class="grid min-h-screen place-items-center px-6 py-16 sm:py-24 lg:px-8"
       >
         <div class="text-center">
           <img src="/tec.svg" alt="Tec.sh" class="w-20 mx-auto mb-8" />
@@ -119,11 +129,16 @@ const items = [
             {{ app_url }}
           </h1>
 
-          <p class="mt-6 text-base leading-7 text-gray-600">
-            Sorry, Our demo can't be loaded in frame, please click the button
-            below
-          </p>
-          <div class="mt-10 flex items-center justify-center gap-x-6">
+          <div v-if="!is_parent" class="mt-6 text-base leading-7">
+            <p class="text-red-600 font-bold">
+              Sorry, Our demo can't be loaded in frame.
+            </p>
+            <p class="mt-1 text-gray-600">
+              Please click the button below to open in parent frame or new tab.
+            </p>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-6">
             <a
               target="_top"
               :href="app_url"
