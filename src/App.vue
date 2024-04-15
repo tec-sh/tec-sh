@@ -32,6 +32,16 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
+  } else if (app.value == "asin") {
+    app_url.value = "https://asin.tec.sh";
+  } else if (app.value == "sili") {
+    app_url.value = "https://sili.tec.sh";
+  } else if (app.value == "sarsa") {
+    app_url.value = "https://sarsa.tec.sh";
+  } else if (app.value == "asukal") {
+    app_url.value = "https://asukal.tec.sh";
+  } else if (app.value == "kampeon") {
+    app_url.value = "https://kampeon.tec.sh";
   }
 
   if (urlParams.has("sub")) {
