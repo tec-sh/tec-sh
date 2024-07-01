@@ -3,6 +3,7 @@ import { defineComponent, h, ref, onMounted } from "vue";
 
 const app = ref(null);
 const app_url = ref(null);
+const app_beta = ref({ url: null, version: null });
 const is_parent = ref(false);
 const app_old_url = ref(null);
 
@@ -32,6 +33,7 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
+    app_beta.value = { url: "https://spos5.tec.sh", version: "v5.0.0-alpha.0" };
   } else if (app.value == "asin") {
     app_url.value = "https://asin.tec.sh";
   } else if (app.value == "sili") {
@@ -50,7 +52,9 @@ onMounted(() => {
 
   if (window.self === window.top) {
     is_parent.value = true;
-    window.location.replace(app_url.value);
+    if (app_url.value) {
+      window.location.replace(app_url.value);
+    }
   }
 });
 
@@ -158,12 +162,12 @@ const items = [
             <a
               target="_blank"
               :href="app_url"
-              class="text-sm font-semibold text-gray-900 rounded-md hover:bg-gray-100 px-3.5 py-2.5"
+              class="text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
               >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
             >
           </div>
           <div v-if="app_old_url" class="mt-16">
-            <p class="text-base font-semibold">Previous Version Demo</p>
+            <p class="text-base font-semibold">Deprecated Version</p>
             <div class="mt-6 flex items-center justify-center gap-x-6">
               <a
                 :href="app_old_url"
@@ -174,7 +178,35 @@ const items = [
               <a
                 target="_blank"
                 :href="app_old_url"
-                class="text-sm font-semibold text-gray-900"
+                class="text-sm font-semibold text-gray-900 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+                >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
+              >
+            </div>
+          </div>
+          <div
+            v-if="app_beta.url"
+            class="mt-16 bg-gray-950 rounded-2xl p-4 min-w-96 shadow-xl"
+          >
+            <p class="text-base font-semibold text-gray-200">Next Version</p>
+            <template v-if="app_beta.version">
+              <p class="mt-6 text-4xl font-thin text-blue-500 pb-0.5">
+                {{ app_beta.version }}
+              </p>
+              <p class="text-sm text-blue-500">Coming Soon</p>
+            </template>
+            <div
+              class="mt-6 -mx-4 px-4 pt-4 border-t border-gray-700 flex items-center justify-center gap-x-6"
+            >
+              <a
+                :href="app_beta.url"
+                target="_top"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                >Open Demo</a
+              >
+              <a
+                target="_blank"
+                :href="app_beta.url"
+                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
                 >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
               >
             </div>
