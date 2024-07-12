@@ -33,7 +33,7 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
-    app_beta.value = { url: "https://spos5.tec.sh", version: "v5.0.0-alpha.0" };
+    app_beta.value = { url: "https://spos5.tec.sh", version: "v5.0.0-beta.x" };
   } else if (app.value == "asin") {
     app_url.value = "https://asin.tec.sh";
   } else if (app.value == "sili") {
