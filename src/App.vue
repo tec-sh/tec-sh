@@ -13,10 +13,18 @@ onMounted(() => {
 
   if (app.value == "sma") {
     app_url.value = "https://sma.tec.sh/admin";
-    app_beta.value = { url: "https://sma4.tec.sh", version: "v4.0.0-alpha.x", message: "POS & Shop Modules will take another 2 months." };
+    app_beta.value = {
+      url: "https://sma4.tec.sh/admin",
+      version: "v4.0.0-beta.1",
+      message: "Shop Modules will take another 2-4 weeks.",
+    };
   } else if (app.value == "sma_shop") {
     app_url.value = "https://sma.tec.sh";
-    app_beta.value = { url: "https://sma4.tec.sh", version: "v4.0.0-alpha.x", message: "POS & Shop Modules will take another 2 months." };
+    app_beta.value = {
+      url: "https://sma4.tec.sh",
+      version: "v4.0.0-beta.1",
+      message: "Shop Modules will take another 2-4 weeks.",
+    };
   } else if (app.value == "sim") {
     app_url.value = "https://sim.tec.sh";
     // app_old_url.value = "https://sim3.tec.sh";
@@ -131,17 +139,27 @@ const items = [
   <div class="bg-white">
     <main class="isolate">
       <!-- Demo Section -->
-      <section id="demo" v-if="app" class="grid min-h-screen place-items-center px-6 py-16 sm:py-24 lg:px-8">
+      <section
+        id="demo"
+        v-if="app"
+        class="grid min-h-screen place-items-center px-6 py-16 sm:py-24 lg:px-8"
+      >
         <div class="text-center">
           <img src="/tec.svg" alt="Tec.sh" class="w-20 mx-auto mb-8" />
           <p class="text-base font-semibold">We are trying to redirect to</p>
-          <h1 class="mt-4 text-3xl font-thin tracking-tight text-gray-900 sm:text-5xl">
+          <h1
+            class="mt-4 text-3xl font-thin tracking-tight text-gray-900 sm:text-5xl"
+          >
             {{ app_url }}
           </h1>
 
           <div v-if="!is_parent" class="mt-6 text-base leading-7">
-            <p class="text-red-600 font-bold">Sorry, Our demo can't be loaded in frame.</p>
-            <p class="mt-1 text-gray-600">Please click the button below to open in parent frame or new tab.</p>
+            <p class="text-red-600 font-bold">
+              Sorry, Our demo can't be loaded in frame.
+            </p>
+            <p class="mt-1 text-gray-600">
+              Please click the button below to open in parent frame or new tab.
+            </p>
           </div>
 
           <div class="mt-10 flex flex-wrap items-center justify-center gap-6">
@@ -175,16 +193,23 @@ const items = [
               >
             </div>
           </div>
-          <div v-if="app_beta.url" class="mt-16 bg-gray-950 rounded-2xl p-4 min-w-96 shadow-xl">
+          <div
+            v-if="app_beta.url"
+            class="mt-16 bg-gray-950 rounded-2xl p-4 min-w-96 shadow-xl"
+          >
             <p class="text-base font-semibold text-gray-200">Next Version</p>
             <template v-if="app_beta.version">
               <p class="mt-6 text-4xl font-thin text-blue-500 pb-0.5">
                 {{ app_beta.version }}
               </p>
               <p class="text-sm text-blue-500">Coming Soon</p>
-              <p v-if="app_beta.message" class="mt-2 text-sm text-white">{{ app_beta.message }}</p>
+              <p v-if="app_beta.message" class="mt-2 text-sm text-white">
+                {{ app_beta.message }}
+              </p>
             </template>
-            <div class="mt-6 -mx-4 px-4 pt-4 border-t border-gray-700 flex items-center justify-center gap-x-6">
+            <div
+              class="mt-6 -mx-4 px-4 pt-4 border-t border-gray-700 flex items-center justify-center gap-x-6"
+            >
               <a
                 :href="app_beta.url"
                 target="_top"
@@ -209,14 +234,29 @@ const items = [
           aria-hidden="true"
         >
           <defs>
-            <pattern id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+            <pattern
+              id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84"
+              width="200"
+              height="200"
+              x="50%"
+              y="-1"
+              patternUnits="userSpaceOnUse"
+            >
               <path d="M.5 200V.5H200" fill="none" />
             </pattern>
           </defs>
           <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
-            <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" stroke-width="0" />
+            <path
+              d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+              stroke-width="0"
+            />
           </svg>
-          <rect width="100%" height="100%" stroke-width="0" fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)" />
+          <rect
+            width="100%"
+            height="100%"
+            stroke-width="0"
+            fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)"
+          />
         </svg>
         <div
           class="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48"
@@ -248,16 +288,30 @@ const items = [
         </div>
         <div class="overflow-hidden">
           <div class="mx-auto max-w-6xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:justify-between min-h-screen py-32">
+            <div
+              class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:justify-between min-h-screen py-32"
+            >
               <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl">Ready to see our software in action?</h1>
-                <p class="relative mt-6 text-lg leading-8 text-gray-600 lg:max-w-none">
-                  Simply click on the demo links below to launch the live demo. If you have any questions or feedback, feel free to reach
-                  out to our team. We're here to assist you and ensure you have all the information you need to make an informed decision.
+                <h1
+                  class="text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl"
+                >
+                  Ready to see our software in action?
+                </h1>
+                <p
+                  class="relative mt-6 text-lg leading-8 text-gray-600 lg:max-w-none"
+                >
+                  Simply click on the demo links below to launch the live demo.
+                  If you have any questions or feedback, feel free to reach out
+                  to our team. We're here to assist you and ensure you have all
+                  the information you need to make an informed decision.
                 </p>
               </div>
-              <div class="mt-14 flex justify-end gap-8 sm:justify-start sm:pl-24 lg:mt-0 lg:pl-0">
-                <div class="ml-auto w-24 flex-none space-y-8 pt-32 sm:ml-0 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+              <div
+                class="mt-14 flex justify-end gap-8 sm:justify-start sm:pl-24 lg:mt-0 lg:pl-0"
+              >
+                <div
+                  class="ml-auto w-24 flex-none space-y-8 pt-32 sm:ml-0 lg:order-last lg:pt-36 xl:order-none xl:pt-80"
+                >
                   <div class="relative">
                     <img
                       src="/icons/wims.png"
@@ -322,14 +376,19 @@ const items = [
       <!-- Other items section -->
       <div class="mx-auto mt-32 max-w-6xl px-6 sm:mt-40 lg:px-8">
         <section class="relative">
-          <h2 class="text-slate-900 text-xl tracking-tight font-bold mb-3">Demos Links</h2>
+          <h2 class="text-slate-900 text-xl tracking-tight font-bold mb-3">
+            Demos Links
+          </h2>
           <div class="mb-10 max-w-3xl prose prose-slate xl:mb-0">
             <p>
-              Whether you're looking to streamline operations, enhance engagement, or optimize resources, our solutions are designed to meet
-              your business needs.
+              Whether you're looking to streamline operations, enhance
+              engagement, or optimize resources, our solutions are designed to
+              meet your business needs.
             </p>
           </div>
-          <ul class="mt-10 grid grid-cols-1 gap-x-16 gap-y-8 xl:grid-cols-2 xl:gap-y-10">
+          <ul
+            class="mt-10 grid grid-cols-1 gap-x-16 gap-y-8 xl:grid-cols-2 xl:gap-y-10"
+          >
             <li v-for="item of items" class="relative flex items-start">
               <img :src="item.image" alt="" class="w-16 h-16" />
               <!-- <div
@@ -342,7 +401,9 @@ const items = [
               </div> -->
               <div class="peer group flex-auto ml-6">
                 <h3 class="mb-2 font-semibold text-slate-900">
-                  <a class="before:absolute before:-inset-3 before:rounded-2xl sm:before:-inset-4" :href="item.link"
+                  <a
+                    class="before:absolute before:-inset-3 before:rounded-2xl sm:before:-inset-4"
+                    :href="item.link"
                     >{{ item.name
                     }}<svg
                       viewBox="0 0 3 6"
@@ -369,7 +430,9 @@ const items = [
     </main>
 
     <!-- Footer -->
-    <footer class="mx-auto mt-40 max-w-6xl overflow-hidden px-6 pb-20 sm:pb-24 lg:px-8">
+    <footer
+      class="mx-auto mt-40 max-w-6xl overflow-hidden px-6 pb-20 sm:pb-24 lg:px-8"
+    >
       <!-- <nav
         class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
         aria-label="Footer"
@@ -397,7 +460,9 @@ const items = [
           <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
         </a>
       </div> -->
-      <p class="mt-10 text-center text-xs leading-5 text-gray-500">&copy; {{ new Date().getFullYear() }} Tec.sh All rights reserved.</p>
+      <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+        &copy; {{ new Date().getFullYear() }} Tec.sh All rights reserved.
+      </p>
     </footer>
   </div>
 </template>
