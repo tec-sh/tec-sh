@@ -3,7 +3,7 @@ import { defineComponent, h, ref, onMounted } from "vue";
 
 const app = ref(null);
 const app_url = ref(null);
-const app_beta = ref({ url: null, version: null });
+const app_beta = ref({ url: null, version: null, message: "Coming Soon" });
 const is_parent = ref(false);
 const app_old_url = ref(null);
 
@@ -15,15 +15,15 @@ onMounted(() => {
     app_url.value = "https://sma.tec.sh/admin";
     app_beta.value = {
       url: "https://sma4.tec.sh/admin",
-      version: "v4.0.0-beta.1",
-      message: "Shop Modules will take another 2-4 weeks.",
+      version: "v4.0.0-beta.x",
+      message: "Beta version is for testing purpose only.",
     };
   } else if (app.value == "sma_shop") {
     app_url.value = "https://sma.tec.sh";
     app_beta.value = {
       url: "https://sma4.tec.sh",
-      version: "v4.0.0-beta.1",
-      message: "Shop Modules will take another 2-4 weeks.",
+      version: "v4.0.0-beta.x",
+      message: "Beta version is for testing purpose only.",
     };
   } else if (app.value == "sim") {
     app_url.value = "https://sim.tec.sh";
@@ -43,7 +43,11 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
-    app_beta.value = { url: "https://spos5.tec.sh", version: "v5.0.0-beta.x" };
+    app_beta.value = {
+      url: "https://spos5.tec.sh",
+      version: "v5.0.0-rc.x",
+      message: "You can use this version for production.",
+    };
   } else if (app.value == "asin") {
     app_url.value = "https://asin.tec.sh";
   } else if (app.value == "sili") {
@@ -63,7 +67,7 @@ onMounted(() => {
   if (window.self === window.top) {
     is_parent.value = true;
     if (app_url.value) {
-      window.location.replace(app_url.value);
+      // window.location.replace(app_url.value);
     }
   }
 });
@@ -202,7 +206,7 @@ const items = [
               <p class="mt-6 text-4xl font-thin text-blue-500 pb-0.5">
                 {{ app_beta.version }}
               </p>
-              <p class="text-sm text-blue-500">Coming Soon</p>
+              <!-- <p class="text-sm text-blue-500">Coming Soon</p> -->
               <p v-if="app_beta.message" class="mt-2 text-sm text-white">
                 {{ app_beta.message }}
               </p>
