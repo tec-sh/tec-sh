@@ -67,7 +67,7 @@ onMounted(() => {
   if (window.self === window.top) {
     is_parent.value = true;
     if (app_url.value) {
-      // window.location.replace(app_url.value);
+      window.location.replace(app_url.value);
     }
   }
 });
