@@ -192,7 +192,7 @@ const items = [
             <a
               target="_blank"
               :href="app_url"
-              class="text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+              class="text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded-md hover:-mx-3.5 hover:px-3.5 hover:py-2.5 transition-all"
               >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
             >
           </div>
@@ -208,7 +208,7 @@ const items = [
               <a
                 target="_blank"
                 :href="app_old_url"
-                class="text-sm font-semibold text-gray-900 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+                class="text-sm font-semibold text-gray-900 rounded-md hover:-mx-3.5 hover:px-3.5 hover:py-2.5 transition-all"
                 >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
               >
             </div>
@@ -239,7 +239,7 @@ const items = [
               <a
                 target="_blank"
                 :href="old.url"
-                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:-mx-3.5 hover:px-3.5 hover:py-2.5 transition-all"
                 >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
               >
             </div>
@@ -270,7 +270,7 @@ const items = [
               <a
                 target="_blank"
                 :href="app_beta.url"
-                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:-mx-3.5 hover:px-3.5 hover:py-2.5 transition-all"
                 >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
               >
             </div>
