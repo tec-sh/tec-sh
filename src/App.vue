@@ -2,6 +2,7 @@
 import { defineComponent, h, ref, onMounted } from "vue";
 
 const app = ref(null);
+const old = ref(null);
 const app_url = ref(null);
 const app_beta = ref({ url: null, version: null, message: "Coming Soon" });
 const is_parent = ref(false);
@@ -13,6 +14,16 @@ onMounted(() => {
 
   if (app.value == "sma") {
     app_url.value = "https://sma.tec.sh/admin";
+    old.value = {
+      url: "https://sma3.tec.sh/admin",
+      version: "v3.5.5",
+      message: "Old Version is deprecated and no longer supported.",
+    };
+    old.value = {
+      url: "https://sma3.tec.sh/admin",
+      version: "v3.5.5",
+      message: "Old Version is deprecated and no longer supported.",
+    };
     app_beta.value = {
       url: "https://sma4.tec.sh/admin",
       version: "v4.0.0-beta.x",
@@ -43,6 +54,11 @@ onMounted(() => {
     app_url.value = "https://tsms.tec.sh";
   } else if (app.value == "spos") {
     app_url.value = "https://spos.tec.sh";
+    old.value = {
+      url: "https://spos4.tec.sh",
+      version: "v4.1.1",
+      message: "Old Version is deprecated and no longer supported.",
+    };
     app_beta.value = {
       url: "https://spos5.tec.sh",
       version: "v5.0.0-rc.x",
@@ -64,12 +80,12 @@ onMounted(() => {
     app_url.value = app_url.value + "/" + urlParams.get("sub");
   }
 
-  if (window.self === window.top) {
-    is_parent.value = true;
-    if (app_url.value) {
-      window.location.replace(app_url.value);
-    }
-  }
+  // if (window.self === window.top) {
+  //   is_parent.value = true;
+  //   if (app_url.value) {
+  //     window.location.replace(app_url.value);
+  //   }
+  // }
 });
 
 const items = [
@@ -198,7 +214,38 @@ const items = [
             </div>
           </div>
           <div
-            v-if="app_beta.url"
+            v-if="old.url"
+            class="mt-16 bg-gray-950 rounded-2xl p-4 min-w-96 shadow-xl"
+          >
+            <p class="text-base font-semibold text-gray-200">Old Version</p>
+            <template v-if="old.version">
+              <p class="mt-6 text-4xl font-thin text-blue-500 pb-0.5">
+                {{ old.version }}
+              </p>
+              <!-- <p class="text-sm text-blue-500">Coming Soon</p> -->
+              <p v-if="old.message" class="mt-2 text-sm text-white">
+                {{ old.message }}
+              </p>
+            </template>
+            <div
+              class="mt-6 -mx-4 px-4 pt-4 border-t border-gray-700 flex items-center justify-center gap-x-6"
+            >
+              <a
+                :href="old.url"
+                target="_top"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                >Open Demo</a
+              >
+              <a
+                target="_blank"
+                :href="old.url"
+                class="text-sm font-semibold text-gray-200 hover:bg-gray-800 rounded-md hover:px-3.5 hover:py-2.5 transition-all"
+                >Open Demo in New Tab <span aria-hidden="true">&rarr;</span></a
+              >
+            </div>
+          </div>
+          <div
+            v-else-if="app_beta.url"
             class="mt-16 bg-gray-950 rounded-2xl p-4 min-w-96 shadow-xl"
           >
             <p class="text-base font-semibold text-gray-200">Next Version</p>
