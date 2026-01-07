@@ -11,14 +11,14 @@
     "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "vue": "^3.5.26"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "autoprefixer": "^10.4.20",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vitejs/plugin-vue": "^6.0.3",
     "gh-pages": "^6.3.0",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^3.4.17",
-    "vite": "^5.4.14"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
   }
 }

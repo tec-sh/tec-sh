@@ -186,7 +186,7 @@ const items = [
             <a
               target="_top"
               :href="app_url"
-              class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-green-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
               >Open Demo</a
             >
             <a
@@ -202,7 +202,7 @@ const items = [
               <a
                 :href="app_old_url"
                 target="_top"
-                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >Open Demo</a
               >
               <a
@@ -233,7 +233,7 @@ const items = [
               <a
                 :href="old.url"
                 target="_top"
-                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >Open Demo</a
               >
               <a
@@ -264,7 +264,7 @@ const items = [
               <a
                 :href="app_beta.url"
                 target="_top"
-                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >Open Demo</a
               >
               <a
@@ -281,7 +281,7 @@ const items = [
       <!-- Hero section -->
       <div class="relative isolate -z-10">
         <svg
-          class="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+          class="absolute inset-x-0 top-0 -z-10 h-256 w-full stroke-gray-200 mask-[radial-gradient(32rem_32rem_at_center,white,transparent)]"
           aria-hidden="true"
         >
           <defs>
@@ -314,7 +314,7 @@ const items = [
           aria-hidden="true"
         >
           <div
-            class="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            class="aspect-801/1036 w-200.25 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
             style="
               clip-path: polygon(
                 63.1% 29.5%,
@@ -361,13 +361,13 @@ const items = [
                 class="mt-14 flex justify-end gap-8 sm:justify-start sm:pl-24 lg:mt-0 lg:pl-0"
               >
                 <div
-                  class="ml-auto w-24 flex-none space-y-8 pt-32 sm:ml-0 lg:order-last lg:pt-36 xl:order-none xl:pt-80"
+                  class="ml-auto w-24 flex-none space-y-8 pt-32 sm:ml-0 lg:order-last lg:pt-36 xl:order-0 xl:pt-80"
                 >
                   <div class="relative">
                     <img
                       src="/icons/wims.png"
                       alt="Inventory Manager"
-                      class="aspect-[1/1] w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
+                      class="aspect-square w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
                     />
                     <!-- <div
                       class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -379,7 +379,7 @@ const items = [
                     <img
                       src="/icons/sma.png"
                       alt="Stock Manager"
-                      class="aspect-[1/1] w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
+                      class="aspect-square w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
                     />
                     <!-- <div
                       class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -389,7 +389,7 @@ const items = [
                     <img
                       src="/icons/sbm.png"
                       alt="Business Manager"
-                      class="aspect-[1/1] w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
+                      class="aspect-square w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
                     />
                     <!-- <div
                       class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -401,7 +401,7 @@ const items = [
                     <img
                       src="/icons/tsms.png"
                       alt="Tailor Shop"
-                      class="aspect-[1/1] w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
+                      class="aspect-square w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
                     />
                     <!-- <div
                       class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -411,7 +411,7 @@ const items = [
                     <img
                       src="/icons/forum.png"
                       alt="Simple Forum"
-                      class="aspect-[1/1] w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
+                      class="aspect-square w-full rounded-full bg-gray-900/5 object-cover shadow-lg"
                     />
                     <!-- <div
                       class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -443,10 +443,10 @@ const items = [
             <li v-for="item of items" class="relative flex items-start">
               <img :src="item.image" alt="" class="w-16 h-16" />
               <!-- <div
-                class="w-16 h-16 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none"
+                class="w-16 h-16 p-0.75 rounded-full ring-1 ring-slate-900/10 shadow-sm overflow-hidden flex-none"
               >
                 <div
-                  class="aspect-w-1 aspect-h-1 bg-[length:100%]"
+                  class="aspect-w-1 aspect-h-1 bg-size-[100%]"
                   :style="`background-image: url(&quot;${item.image}&quot;)`"
                 ></div>
               </div> -->
