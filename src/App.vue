@@ -80,12 +80,12 @@ onMounted(() => {
     app_url.value = app_url.value + "/" + urlParams.get("sub");
   }
 
-  if (window.self === window.top) {
-    is_parent.value = true;
-    if (app_url.value) {
-      window.location.replace(app_url.value);
-    }
-  }
+  // if (window.self === window.top) {
+  //   is_parent.value = true;
+  //   if (app_url.value) {
+  //     window.location.replace(app_url.value);
+  //   }
+  // }
 });
 
 const items = [
