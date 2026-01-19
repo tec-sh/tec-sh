@@ -17,6 +17,8 @@ version is for testing purpose only.', ];
     $app_beta = ['url' => 'https://sma4.tec.sh',
         'version'      => 'v4.0.0-beta.x', 'message' => 'Beta version is for testing purpose
 only.', ];
+} elseif ($app == 'sma-saas') {
+    $app_url = 'https://sma-saas.com';
 } elseif ($app == 'sim') {
     $app_url = 'https://sim.tec.sh';
 } elseif ($app == 'ssm') {
