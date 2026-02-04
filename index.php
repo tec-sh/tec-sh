@@ -143,10 +143,10 @@ Business Manager - Invoicing Solution', 'link' => 'https://tecdiary.com/products
             <p class="mt-1 text-zinc-600 dark:text-zinc-400">
               Please click the button below to open in parent frame or new tab.
             </p>
-            <p class="mt-1 text-yellow-600 dark:text-yellow-400">
-              <?= $rend == 1 ? 'We reset demo every hour. If server one is not working, please try second.' : 'We reset demo every hour.' ?>
-            </p>
           </div>
+          <p class="mt-1 text-yellow-600 dark:text-yellow-400">
+            <?= $rend == 1 ? 'We reset demo every hour. If server one is not working, please try second.' : 'We reset demo every hour.' ?>
+          </p>
 
           <div
             class="grid grid-cols-1 gap-6 mt-6 max-w-sm lg:max-w-4xl mx-auto <?= $rend == 1 ? 'lg:grid-cols-2' : '' ?>">
@@ -377,17 +377,23 @@ Business Manager - Invoicing Solution', 'link' => 'https://tecdiary.com/products
     </footer>
   </div>
 
-  <!-- <script>
-      if (window.self === window.top) {
-        var warning = document.getElementById("iframe-warning");
-        if (warning) {
-          warning.style.display = "none";
-        }
-        <?php if ($app_url) { ?>
-  window.location.replace( <?= json_encode($app_url) ?> );
-  <?php } ?>
-  }
-  </script> -->
+  <script>
+    if (window.self === window.top) {
+      var warning = document.getElementById("iframe-warning");
+      if (warning) {
+        warning.style.display = "none";
+      }
+      <?php if ($app_url1 && $app_url2) { ?>
+      window.location.replace(<?= json_encode([$app_url1, $app_url2][mt_rand(0, 1)]) ?>);
+      <?php } elseif ($app_url1) { ?>
+      window.location.replace(<?= json_encode($app_url1) ?>);
+      <?php } elseif ($app_url2) { ?>
+      window.location.replace(<?= json_encode($app_url2) ?>);
+      <?php } elseif ($app_url) { ?>
+      window.location.replace(<?= json_encode($rend == 1 ? [$app_url, str_replace('tecdesk.top', 'tecd.top', $app_url)][mt_rand(0, 1)] : str_replace('tecdesk.top', 'tecd.top', $app_url)) ?>);
+      <?php } ?>
+    }
+  </script>
 </body>
 
 </html>
