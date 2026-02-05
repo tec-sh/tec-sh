@@ -20,6 +20,10 @@ if ($app == 'sma') {
 } elseif ($app == 'sma-saas') {
     $app_url1 = 'https://smasaas.top';
     $app_url2 = 'https://smacloud.top';
+} elseif ($app == 'imim-saas') {
+    $app_url = 'https://invoices.tecdesk.top';
+} elseif ($app == 'imim') {
+    $app_url = 'https://invoice.tecdesk.top';
 } elseif ($app == 'sim') {
     $app_url = 'https://sim.tecdesk.top';
 } elseif ($app == 'ssm') {
