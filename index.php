@@ -2,7 +2,7 @@
 $app = $_GET['app'] ?? null;
 $sub = $_GET['sub'] ?? null;
 
-$rend = null; // 1; // mt_rand(0, 1);
+$rend = 1; // mt_rand(0, 1); // null;
 $old = null;
 $app_url = null;
 $app_url1 = null;
