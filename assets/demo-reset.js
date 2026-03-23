@@ -1,16 +1,7 @@
 (function () {
   "use strict";
   const ALLOWED_DOMAINS = ["*.test", "*.tecd.top", "*.tecdesk.top"];
-  function getResetAtMinute() {
-    const scriptTag = document.querySelector('script[src*="demo-reset"]');
-    if (scriptTag && scriptTag.dataset.resetAt) {
-      const minute = parseInt(scriptTag.dataset.resetAt, 10);
-      if (!isNaN(minute) && minute >= 0 && minute < 60) {
-        return minute;
-      }
-    }
-    return 0;
-  }
+  const RESET_HOURS = [1, 7, 13, 19];
 
   function getPurchaseLink() {
     const scriptTag = document.querySelector('script[src*="demo-reset"]');
@@ -116,19 +107,30 @@
   }
 
   function getTimeUntilReset() {
-    const resetAtMinute = getResetAtMinute();
     const now = new Date();
+    const currentHour = now.getHours();
+    const nextHour = RESET_HOURS.find((h) => h > currentHour);
     const nextReset = new Date(now);
-    nextReset.setMinutes(resetAtMinute, 0, 0);
-    if (nextReset <= now) {
-      nextReset.setHours(nextReset.getHours() + 1);
+    if (nextHour !== undefined) {
+      nextReset.setHours(nextHour, 0, 0, 0);
+    } else {
+      nextReset.setDate(nextReset.getDate() + 1);
+      nextReset.setHours(RESET_HOURS[0], 0, 0, 0);
     }
     const diff = nextReset - now;
-    const minutes = Math.ceil(diff / 60000);
-    return { minutes, totalSeconds: Math.floor(diff / 1000) };
+    const totalSeconds = Math.floor(diff / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.ceil((totalSeconds % 3600) / 60);
+    return { hours, minutes, totalSeconds };
   }
 
-  function formatTimeMessage(minutes) {
+  function formatTimeMessage(hours, minutes) {
+    if (hours > 0) {
+      return {
+        compact: `${hours}h ${minutes}m`,
+        full: `Data will reset in ${hours} ${hours === 1 ? "hour" : "hours"} ${minutes} ${minutes === 1 ? "minute" : "minutes"}`,
+      };
+    }
     return {
       compact: `${minutes}m`,
       full: `Data will reset in ${minutes} ${minutes === 1 ? "minute" : "minutes"}`,
@@ -139,7 +141,7 @@
     const messageElement = document.getElementById("reset-message");
     const tooltipElement = document.getElementById("reset-tooltip");
     if (!messageElement) return;
-    const { minutes, totalSeconds } = getTimeUntilReset();
+    const { hours, minutes, totalSeconds } = getTimeUntilReset();
     if (totalSeconds <= 0) {
       messageElement.textContent = "Resetting...";
       if (tooltipElement) tooltipElement.textContent = "Resetting demo now...";
@@ -148,7 +150,7 @@
       }, 15000);
       return;
     }
-    const message = formatTimeMessage(minutes);
+    const message = formatTimeMessage(hours, minutes);
     messageElement.textContent = message.compact;
     if (tooltipElement) tooltipElement.textContent = message.full;
   }
