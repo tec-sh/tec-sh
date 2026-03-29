@@ -10,7 +10,9 @@ $app_url2 = null;
 
 $app_beta = ['url' => null, 'version' => null, 'message' => 'Coming Soon'];
 $app_old_url = null;
-if ($app == 'sma') {
+if ($app == 'pai') {
+    $app_url = 'https://pai.tecdesk.top';
+} elseif ($app == 'sma') {
     $app_url = 'https://sma.tecdesk.top/admin';
     // $old = ['url' => 'https://sma3.tecdesk.top/admin', 'version' => 'v3.5.5', 'message' => 'Old Version is deprecated and no longer supported.', ];
     // $app_beta = ['url' => 'https://sma4.tecdesk.top/admin', 'version' => 'v4.0.0-beta.x', 'message' => 'Beta version is for testing purpose only.', ];
@@ -149,7 +151,7 @@ Business Manager - Invoicing Solution', 'link' => 'https://tecdiary.com/products
             </p>
           </div>
           <p class="mt-1 text-yellow-600 dark:text-yellow-400">
-            <?= $rend == 1 ? 'We reset demo every hour. If server one is not working, please try second.' : 'We reset demo every hour.' ?>
+            <?= $rend == 1 ? 'We reset demo every 1,7,13,19 hours. If server one is not working, please try second.' : 'We reset demo every 1,7,13,19 hours.' ?>
           </p>
 
           <div
