@@ -1,14 +1,729 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/tec.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <script type="module" crossorigin src="/assets/index-8C-3M5T3.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D2Dz_0NK.css">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Live Demos · Tecdiary</title>
+        <meta
+            name="description"
+            content="Try Tecdiary products live: Stock Manager Advance, Invoices, Simple Forum, Simple POS, WIMS and Tailor Shop Management System."
+        />
+        <link rel="icon" href="/tec.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #f6f6f4;
+                --surface: #ffffff;
+                --surface-2: #f0f0ed;
+                --ink: #111111;
+                --ink-2: #4a4a48;
+                --ink-3: #85857f;
+                --line: #e4e4df;
+                --line-strong: #cfcfc8;
+                --live: #16a34a;
+                --live-soft: rgba(22, 163, 74, 0.14);
+                --down: #dc2626;
+                --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.12);
+                --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.05), 0 22px 44px -18px rgba(0, 0, 0, 0.25);
+                --radius: 16px;
+                color-scheme: light;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bg: #0d0d0d;
+                    --surface: #161616;
+                    --surface-2: #1d1d1d;
+                    --ink: #f2f2f0;
+                    --ink-2: #b4b4ae;
+                    --ink-3: #d1fae5;
+                    --line: #262626;
+                    --line-strong: #353535;
+                    --live: #22c55e;
+                    --live-soft: rgba(34, 197, 94, 0.16);
+                    --down: #f87171;
+                    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    --shadow-hover: 0 22px 44px -18px rgba(0, 0, 0, 0.8);
+                    color-scheme: dark;
+                }
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            html {
+                -webkit-text-size-adjust: 100%;
+            }
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font:
+                    400 16px/1.55 Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+            a {
+                color: inherit;
+            }
+            .wrap {
+                max-width: 1160px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+            .mono {
+                font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+            }
+
+            /* Header */
+            .top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 22px 0;
+            }
+            .brand {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+            }
+            .brand img {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+            }
+            .brand span {
+                color: var(--ink-3);
+                font-weight: 500;
+            }
+            .top-link {
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: none;
+                color: var(--ink-2);
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 14px;
+                border: 1px solid var(--line);
+                border-radius: 999px;
+                background: var(--surface);
+                transition:
+                    border-color 0.15s,
+                    color 0.15s;
+            }
+            .top-link:hover {
+                color: var(--ink);
+                border-color: var(--line-strong);
+            }
+
+            /* Hero */
+            .hero {
+                padding: 56px 0 40px;
+                max-width: 760px;
+            }
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--ink-2);
+                padding: 5px 12px 5px 10px;
+                border-radius: 999px;
+                background: var(--surface);
+                border: 1px solid var(--line);
+            }
+            .pulse {
+                position: relative;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--live);
+            }
+            .pulse::after {
+                content: "";
+                position: absolute;
+                inset: -4px;
+                border-radius: 50%;
+                background: var(--live-soft);
+                animation: pulse 2s ease-out infinite;
+            }
+            @keyframes pulse {
+                0% {
+                    transform: scale(0.6);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1.8);
+                    opacity: 0;
+                }
+            }
+            h1 {
+                margin: 20px 0 16px;
+                font-size: clamp(36px, 6vw, 60px);
+                line-height: 1.04;
+                letter-spacing: -0.035em;
+                font-weight: 700;
+                text-wrap: balance;
+            }
+            h1 em {
+                font-style: normal;
+                color: var(--ink-3);
+            }
+            .lede {
+                margin: 0;
+                font-size: 18px;
+                color: var(--ink-2);
+                max-width: 600px;
+                text-wrap: pretty;
+            }
+
+            /* Filters */
+            .filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 0 0 24px;
+            }
+            .chip {
+                font: inherit;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                padding: 7px 14px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: var(--surface);
+                color: var(--ink-2);
+                transition:
+                    background 0.15s,
+                    color 0.15s,
+                    border-color 0.15s;
+            }
+            .chip:hover {
+                border-color: var(--line-strong);
+                color: var(--ink);
+            }
+            .chip[aria-pressed="true"] {
+                background: var(--ink);
+                border-color: var(--ink);
+                color: var(--bg);
+            }
+            .chip .n {
+                opacity: 0.55;
+                margin-left: 4px;
+                font-variant-numeric: tabular-nums;
+            }
+
+            /* Grid */
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 20px;
+            }
+            @media (max-width: 980px) {
+                .grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+            @media (max-width: 640px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+                .wrap {
+                    padding: 0 16px;
+                }
+                .hero {
+                    padding-top: 32px;
+                }
+                .brand span {
+                    display: none;
+                }
+            }
+            .top-link {
+                white-space: nowrap;
+            }
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease,
+                    border-color 0.2s ease;
+            }
+            .card:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--line-strong);
+            }
+            .card[hidden] {
+                display: none;
+            }
+
+            /* faux browser bar */
+            .bar {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 14px;
+                background: var(--surface-2);
+                border-bottom: 1px solid var(--line);
+            }
+            .dots {
+                display: flex;
+                gap: 5px;
+                flex: none;
+            }
+            .dots i {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: var(--line-strong);
+            }
+            .addr {
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                font-size: 12px;
+                color: var(--ink-2);
+                padding: 4px 10px;
+                border-radius: 7px;
+                background: var(--surface);
+                border: 1px solid var(--line);
+            }
+            .addr span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .status {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--line-strong);
+                flex: none;
+                transition: background 0.3s;
+            }
+            .status[data-state="up"] {
+                background: var(--live);
+                box-shadow: 0 0 0 3px var(--live-soft);
+            }
+            .status[data-state="down"] {
+                background: var(--down);
+            }
+
+            .body {
+                padding: 22px 22px 0;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .head {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 14px;
+            }
+            .icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 13px;
+                flex: none;
+                object-fit: cover;
+                /*background: #fff;*/
+                /*box-shadow: 0 0 0 1px var(--line);*/
+            }
+            .cat {
+                font-size: 12px;
+                font-weight: 500;
+                color: var(--ink-3);
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
+            h2 {
+                margin: 2px 0 0;
+                font-size: 19px;
+                line-height: 1.25;
+                letter-spacing: -0.015em;
+                font-weight: 600;
+            }
+            .desc {
+                margin: 0 0 16px;
+                font-size: 15px;
+                color: var(--ink-2);
+                text-wrap: pretty;
+            }
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin: auto 0 0;
+                padding: 0;
+                list-style: none;
+            }
+            .tags li {
+                font-size: 12px;
+                font-weight: 500;
+                color: var(--ink-2);
+                padding: 3px 9px;
+                border-radius: 6px;
+                background: var(--surface-2);
+                border: 1px solid var(--line);
+            }
+            .note {
+                margin: 14px 0 0;
+                font-size: 13px;
+                color: var(--ink-3);
+            }
+            .note code {
+                font-size: 12px;
+                color: var(--ink);
+                background: var(--surface-2);
+                border: 1px solid var(--line);
+                padding: 1px 6px;
+                border-radius: 5px;
+            }
+
+            .actions {
+                display: flex;
+                gap: 8px;
+                padding: 20px 22px 22px;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 7px;
+                font-size: 14px;
+                font-weight: 600;
+                text-decoration: none;
+                white-space: nowrap;
+                padding: 10px 16px;
+                border-radius: 10px;
+                border: 1px solid transparent;
+                transition:
+                    background 0.15s,
+                    border-color 0.15s,
+                    color 0.15s,
+                    transform 0.1s;
+            }
+            .btn:active {
+                transform: scale(0.98);
+            }
+            .btn svg {
+                width: 15px;
+                height: 15px;
+                flex: none;
+            }
+            .btn-primary {
+                flex: 1;
+                background: var(--ink);
+                color: var(--bg);
+            }
+            .btn-primary:hover {
+                background: color-mix(in srgb, var(--ink) 82%, var(--bg));
+            }
+            .btn-ghost {
+                background: transparent;
+                color: var(--ink);
+                border-color: var(--line-strong);
+            }
+            .btn-ghost:hover {
+                background: var(--surface-2);
+            }
+            .btn:focus-visible,
+            .chip:focus-visible,
+            .top-link:focus-visible {
+                outline: 2px solid var(--ink);
+                outline-offset: 2px;
+            }
+
+            /* Info strip */
+            .info {
+                margin: 48px 0 0;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1px;
+                background: var(--line);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                overflow: hidden;
+            }
+            .info div {
+                background: var(--surface);
+                padding: 20px 22px;
+            }
+            .info b {
+                display: block;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 4px;
+            }
+            .info p {
+                margin: 0;
+                font-size: 14px;
+                color: var(--ink-2);
+            }
+            @media (max-width: 760px) {
+                .info {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            footer {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: space-between;
+                align-items: center;
+                padding: 40px 0 48px;
+                font-size: 14px;
+                color: var(--ink-3);
+            }
+            footer a {
+                color: var(--ink-2);
+                text-decoration: none;
+            }
+            footer a:hover {
+                color: var(--ink);
+                text-decoration: underline;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header class="top">
+                <a class="brand" href="https://tecdiary.com" rel="noopener">
+                    <img src="tec.svg" alt="" width="32" height="32" />
+                    Tecdiary <span>/ Live demos</span>
+                </a>
+                <a class="top-link" href="https://tecdiary.com/products" rel="noopener">
+                    All products
+                    <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M5 11 11 5M6 5h5v5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </header>
+
+            <section class="hero">
+                <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> 6 demos running live</span>
+                <h1>Try it before you buy it. <em>Every product, fully working.</em></h1>
+                <p class="lede">
+                    Each demo is a real installation loaded with sample data. Log in, create records, run reports and explore every screen —
+                    nothing you do here affects anyone else for long.
+                </p>
+            </section>
+
+            <nav class="filters" aria-label="Filter demos" id="filters"></nav>
+
+            <main class="grid" id="grid"></main>
+
+            <section class="info" aria-label="About the demos">
+                <div>
+                    <b>Sample data only</b>
+                    <p>Demos are shared sandboxes. Please don't enter real customer, payment or personal details.</p>
+                </div>
+                <div>
+                    <b>Resets regularly</b>
+                    <p>Data is restored to a clean state on a schedule, so feel free to change anything.</p>
+                </div>
+                <div>
+                    <b>Questions before buying?</b>
+                    <p>
+                        Open the product page for features, docs and licence options, or reach us via
+                        <a href="https://tecdiary.com">tecdiary.com</a>.
+                    </p>
+                </div>
+            </section>
+
+            <footer>
+                <span>© <span id="year">2026</span> Tecdiary. All demos hosted on tecdesk.top.</span>
+                <a href="https://tecdiary.com" rel="noopener">tecdiary.com</a>
+            </footer>
+        </div>
+
+        <script>
+            const PRODUCTS = [
+                {
+                    id: "sma",
+                    name: "Stock Manager Advance",
+                    short: "SMA",
+                    icon: "icons/sma.png",
+                    cats: ["pos", "inventory"],
+                    category: "POS · Inventory · E-commerce",
+                    demo: "https://sma.tecdesk.top",
+                    page: "https://tecdiary.com/products/stock-manager-advance-with-all-modules",
+                    desc: "All-in-one POS, CRM and inventory management with a built-in online store. Manage sales, stock, purchases and customers from anywhere.",
+                    tags: ["POS", "Inventory", "Shop", "CRM"],
+                    note: "Pick from 3 demo businesses. Password for every account: <code>password</code>",
+                },
+                {
+                    id: "invoices",
+                    name: "Invoices",
+                    short: "Modern Invoice Manager",
+                    icon: "icons/invoices.svg",
+                    cats: ["invoicing"],
+                    category: "Invoicing",
+                    demo: "https://invoice.tecdesk.top",
+                    page: "https://tecdiary.com/products/invoices-modern-invoice-manager",
+                    desc: "Create and send professional invoices in under a minute — right from your phone or laptop. Save time and get paid faster.",
+                    tags: ["Invoices", "Payments", "Mobile-ready"],
+                },
+                {
+                    id: "forum",
+                    name: "Simple Forum",
+                    short: "Responsive Bulletin Board",
+                    icon: "icons/forum.png",
+                    cats: ["community"],
+                    category: "Community",
+                    demo: "https://forum.tecdesk.top",
+                    page: "https://tecdiary.com/products/simple-forum-responsive-bulletin-board",
+                    desc: "Launch a community forum in minutes with dark and light themes, knowledge base, FAQs, articles, private messages and custom fields.",
+                    tags: ["Forum", "Knowledge base", "FAQs", "Themes"],
+                },
+                {
+                    id: "spos",
+                    name: "Simple POS",
+                    short: "Point of Sale Made Easy",
+                    icon: "icons/spos.png",
+                    cats: ["pos"],
+                    category: "Point of Sale",
+                    demo: "https://spos.tecdesk.top",
+                    page: "https://tecdiary.com/products/simple-pos-point-of-sale-made-easy",
+                    desc: "A modern point of sale with inventory tracking, online booking and multi-store management, built to save small businesses time.",
+                    tags: ["POS", "Bookings", "Multi-store"],
+                },
+                {
+                    id: "wims",
+                    name: "WIMS",
+                    short: "Warehouse Inventory Management",
+                    icon: "icons/wims.png",
+                    cats: ["inventory"],
+                    category: "Inventory",
+                    demo: "https://wims.tecdesk.top",
+                    page: "https://tecdiary.com/products/warehouse-inventory-management-solution-wims",
+                    desc: "An easy, affordable way to run multiple warehouses. Categorise items, assign units and track stock right down to product variants.",
+                    tags: ["Warehouses", "Stock", "Variants"],
+                },
+                {
+                    id: "tsms",
+                    name: "Tailor Shop Management",
+                    short: "TSMS · Web",
+                    icon: "icons/tsms.png",
+                    cats: ["services"],
+                    category: "Services",
+                    demo: "https://tsms.tecdesk.top",
+                    page: "https://tecdiary.com/products/tailor-shop-management-system-tsms-web",
+                    desc: "Built for small and medium tailoring businesses to manage customers, measurements, orders and payments in one place.",
+                    tags: ["Measurements", "Orders", "Payments"],
+                },
+            ];
+
+            const FILTERS = [
+                { id: "all", label: "All" },
+                { id: "pos", label: "Point of Sale" },
+                { id: "inventory", label: "Inventory" },
+                { id: "invoicing", label: "Invoicing" },
+                { id: "community", label: "Community" },
+                { id: "services", label: "Services" },
+            ];
+
+            const ICON_OPEN =
+                '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9.5V12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+            const grid = document.getElementById("grid");
+            grid.innerHTML = PRODUCTS.map(
+                (p) => `
+        <article class="card" data-cats="${p.cats.join(" ")}">
+          <div class="bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="addr mono"><span class="status" data-host="${esc(p.demo)}" title="Checking…"></span><span>${esc(p.demo.replace("https://", ""))}</span></div>
+          </div>
+          <div class="body">
+            <div class="head">
+              <img class="icon" src="${esc(p.icon)}" alt="" width="52" height="52" loading="lazy" />
+              <div>
+                <div class="cat">${esc(p.category)}</div>
+                <h2>${esc(p.name)}</h2>
+              </div>
+            </div>
+            <p class="desc">${esc(p.desc)}</p>
+            <ul class="tags">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+            ${p.note ? `<p class="note">${p.note}</p>` : ""}
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="${esc(p.demo)}" target="_blank" rel="noopener">Launch demo ${ICON_OPEN}</a>
+            <a class="btn btn-ghost" href="${esc(p.page)}" target="_blank" rel="noopener" aria-label="${esc(p.name)} product details">Details</a>
+          </div>
+        </article>`,
+            ).join("");
+
+            // Filters
+            const nav = document.getElementById("filters");
+            const count = (id) => (id === "all" ? PRODUCTS.length : PRODUCTS.filter((p) => p.cats.includes(id)).length);
+            nav.innerHTML = FILTERS.map(
+                (f) =>
+                    `<button class="chip" type="button" data-filter="${f.id}" aria-pressed="${f.id === "all"}">${f.label}<span class="n">${count(f.id)}</span></button>`,
+            ).join("");
+            nav.addEventListener("click", (e) => {
+                const btn = e.target.closest(".chip");
+                if (!btn) return;
+                const id = btn.dataset.filter;
+                nav.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === btn)));
+                grid.querySelectorAll(".card").forEach((card) => {
+                    card.hidden = id !== "all" && !card.dataset.cats.split(" ").includes(id);
+                });
+            });
+
+            // Reachability check (opaque no-cors request: resolves if the host answers at all)
+            document.querySelectorAll(".status[data-host]").forEach((dot) => {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 8000);
+                fetch(dot.dataset.host, { mode: "no-cors", cache: "no-store", signal: ctrl.signal })
+                    .then(() => {
+                        dot.dataset.state = "up";
+                        dot.title = "Online";
+                    })
+                    .catch(() => {
+                        dot.dataset.state = "down";
+                        dot.title = "Not responding";
+                    })
+                    .finally(() => clearTimeout(timer));
+            });
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+    </body>
 </html>
