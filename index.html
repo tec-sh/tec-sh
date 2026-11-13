@@ -174,7 +174,7 @@
             }
             h1 {
                 margin: 20px 0 16px;
-                font-size: clamp(36px, 6vw, 60px);
+                font-size: clamp(36px, 6vw, 48px);
                 line-height: 1.04;
                 letter-spacing: -0.035em;
                 font-weight: 700;
@@ -188,7 +188,7 @@
                 margin: 0;
                 font-size: 18px;
                 color: var(--ink-2);
-                max-width: 600px;
+                max-width: 700px;
                 text-wrap: pretty;
             }
 
@@ -397,6 +397,80 @@
                 font-size: 13px;
                 color: var(--ink-3);
             }
+            .reset {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin: 12px 0 0;
+                padding-top: 12px;
+                border-top: 1px dashed var(--line);
+                font-size: 12.5px;
+                color: var(--ink-3);
+                font-variant-numeric: tabular-nums;
+            }
+            .reset[hidden] {
+                display: none;
+            }
+            .reset svg {
+                width: 14px;
+                height: 14px;
+                flex: none;
+            }
+            .note a {
+                color: var(--ink);
+                text-underline-offset: 2px;
+            }
+            .edition {
+                align-self: flex-start;
+                display: inline-flex;
+                gap: 2px;
+                padding: 3px;
+                margin: 0 0 14px;
+                background: var(--surface-2);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+            }
+            .edition button {
+                font: inherit;
+                font-size: 13px;
+                font-weight: 500;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 4px 12px;
+                border: 0;
+                border-radius: 7px;
+                background: transparent;
+                color: var(--ink-3);
+                cursor: pointer;
+                transition:
+                    background 0.15s,
+                    color 0.15s;
+            }
+            .edition button:hover {
+                color: var(--ink);
+            }
+            .edition button[aria-pressed="true"] {
+                background: var(--surface);
+                color: var(--ink);
+                box-shadow:
+                    0 0 0 1px var(--line-strong),
+                    0 1px 2px rgba(0, 0, 0, 0.08);
+            }
+            .edition button:focus-visible {
+                outline: 2px solid var(--ink);
+                outline-offset: 1px;
+            }
+            .badge {
+                font-size: 10px;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                padding: 1px 5px;
+                border-radius: 4px;
+                color: var(--ink-2);
+                border: 1px solid var(--line-strong);
+            }
             .note code {
                 font-size: 12px;
                 color: var(--ink);
@@ -537,7 +611,7 @@
             </header>
 
             <section class="hero">
-                <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> 6 demos running live</span>
+                <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> <span id="demo-count">Demos running live</span></span>
                 <h1>Try it before you buy it. <em>Every product, fully working.</em></h1>
                 <p class="lede">
                     Each demo is a real installation loaded with sample data. Log in, create records, run reports and explore every screen —
@@ -555,8 +629,8 @@
                     <p>Demos are shared sandboxes. Please don't enter real customer, payment or personal details.</p>
                 </div>
                 <div>
-                    <b>Resets regularly</b>
-                    <p>Data is restored to a clean state on a schedule, so feel free to change anything.</p>
+                    <b>Resets twice daily</b>
+                    <p>Each demo is restored to a clean state at the times shown on its card, so feel free to change anything.</p>
                 </div>
                 <div>
                     <b>Questions before buying?</b>
@@ -568,7 +642,7 @@
             </section>
 
             <footer>
-                <span>© <span id="year">2026</span> Tecdiary. All demos hosted on tecdesk.top.</span>
+                <span>© <span id="year">2026</span> Tecdiary. All rights reserved.</span>
                 <a href="https://tecdiary.com" rel="noopener">tecdiary.com</a>
             </footer>
         </div>
@@ -582,11 +656,26 @@
                     icon: "icons/sma.png",
                     cats: ["pos", "inventory"],
                     category: "POS · Inventory · E-commerce",
-                    demo: "https://sma.tecdesk.top",
                     page: "https://tecdiary.com/products/stock-manager-advance-with-all-modules",
                     desc: "All-in-one POS, CRM and inventory management with a built-in online store. Manage sales, stock, purchases and customers from anywhere.",
                     tags: ["POS", "Inventory", "Shop", "CRM"],
-                    note: "Pick from 3 demo businesses. Password for every account: <code>password</code>",
+                    editions: [
+                        {
+                            id: "self",
+                            label: "Self-hosted",
+                            demo: "https://sma.tecdesk.top",
+                            reset: ["1:15", "13:15"],
+                            note: "Pick from 3 demo businesses. Password for every account: <code>password</code>",
+                        },
+                        {
+                            id: "saas",
+                            label: "SaaS",
+                            // badge: "Beta",
+                            demo: "https://smasaas.top",
+                            reset: ["0:45", "12:45"],
+                            note: 'Sign up for your own tenant, or open the ready-made <a href="https://demo1.smasaas.top" target="_blank" rel="noopener">demo tenant</a>: <code>demo1</code> / <code>password</code>',
+                        },
+                    ],
                 },
                 {
                     id: "invoices",
@@ -595,10 +684,18 @@
                     icon: "icons/invoices.svg",
                     cats: ["invoicing"],
                     category: "Invoicing",
-                    demo: "https://invoice.tecdesk.top",
                     page: "https://tecdiary.com/products/invoices-modern-invoice-manager",
                     desc: "Create and send professional invoices in under a minute — right from your phone or laptop. Save time and get paid faster.",
                     tags: ["Invoices", "Payments", "Mobile-ready"],
+                    editions: [
+                        { id: "self", label: "Self-hosted", demo: "https://invoice.tecdesk.top", reset: ["5:00", "17:00"] },
+                        {
+                            id: "saas",
+                            label: "SaaS",
+                            demo: "https://invoices.tecdesk.top",
+                            reset: ["5:15", "17:15"],
+                        },
+                    ],
                 },
                 {
                     id: "forum",
@@ -608,6 +705,7 @@
                     cats: ["community"],
                     category: "Community",
                     demo: "https://forum.tecdesk.top",
+                    reset: ["6:00", "18:00"],
                     page: "https://tecdiary.com/products/simple-forum-responsive-bulletin-board",
                     desc: "Launch a community forum in minutes with dark and light themes, knowledge base, FAQs, articles, private messages and custom fields.",
                     tags: ["Forum", "Knowledge base", "FAQs", "Themes"],
@@ -620,6 +718,7 @@
                     cats: ["pos"],
                     category: "Point of Sale",
                     demo: "https://spos.tecdesk.top",
+                    reset: ["5:30", "17:30"],
                     page: "https://tecdiary.com/products/simple-pos-point-of-sale-made-easy",
                     desc: "A modern point of sale with inventory tracking, online booking and multi-store management, built to save small businesses time.",
                     tags: ["POS", "Bookings", "Multi-store"],
@@ -632,6 +731,7 @@
                     cats: ["inventory"],
                     category: "Inventory",
                     demo: "https://wims.tecdesk.top",
+                    reset: ["4:00", "16:00"],
                     page: "https://tecdiary.com/products/warehouse-inventory-management-solution-wims",
                     desc: "An easy, affordable way to run multiple warehouses. Categorise items, assign units and track stock right down to product variants.",
                     tags: ["Warehouses", "Stock", "Variants"],
@@ -644,6 +744,7 @@
                     cats: ["services"],
                     category: "Services",
                     demo: "https://tsms.tecdesk.top",
+                    reset: ["0:30", "12:30"],
                     page: "https://tecdiary.com/products/tailor-shop-management-system-tsms-web",
                     desc: "Built for small and medium tailoring businesses to manage customers, measurements, orders and payments in one place.",
                     tags: ["Measurements", "Orders", "Payments"],
@@ -657,19 +758,46 @@
                 { id: "invoicing", label: "Invoicing" },
                 { id: "community", label: "Community" },
                 { id: "services", label: "Services" },
+                { id: "saas", label: "SaaS" },
             ];
+
+            // Each demo lists its own reset times (`reset: [...]`); the line is hidden when none is set.
+            const resetText = (times) =>
+                times?.length
+                    ? `Resets ${times.length === 2 ? "twice" : `${times.length}×`} daily at ${times.slice(0, -1).join(", ")}${times.length > 1 ? " & " : ""}${times.at(-1)}`
+                    : "";
+            const ICON_CLOCK =
+                '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.75V8l2.25 1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+            // Every product has one or more editions; single-edition products use top-level demo/note.
+            PRODUCTS.forEach((p) => {
+                p.editions ??= [{ id: "self", label: "Self-hosted", demo: p.demo, note: p.note, reset: p.reset }];
+                if (p.editions.some((e) => e.id === "saas")) p.cats.push("saas");
+            });
+            const edition = (p, id) => p.editions.find((e) => e.id === id) || p.editions[0];
+            const host = (url) => url.replace(/^https?:\/\//, "");
 
             const ICON_OPEN =
                 '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9.5V12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
             const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
             const grid = document.getElementById("grid");
-            grid.innerHTML = PRODUCTS.map(
-                (p) => `
-        <article class="card" data-cats="${p.cats.join(" ")}">
+            grid.innerHTML = PRODUCTS.map((p) => {
+                const e = p.editions[0];
+                const switcher =
+                    p.editions.length > 1
+                        ? `<div class="edition" role="group" aria-label="${esc(p.name)} edition">${p.editions
+                              .map(
+                                  (ed, i) =>
+                                      `<button type="button" data-edition="${ed.id}" aria-pressed="${i === 0}">${esc(ed.label)}${ed.badge ? `<span class="badge">${esc(ed.badge)}</span>` : ""}</button>`,
+                              )
+                              .join("")}</div>`
+                        : "";
+                return `
+        <article class="card" data-id="${p.id}" data-cats="${p.cats.join(" ")}">
           <div class="bar" aria-hidden="true">
             <div class="dots"><i></i><i></i><i></i></div>
-            <div class="addr mono"><span class="status" data-host="${esc(p.demo)}" title="Checking…"></span><span>${esc(p.demo.replace("https://", ""))}</span></div>
+            <div class="addr mono"><span class="status" title="Checking…"></span><span class="url">${esc(host(e.demo))}</span></div>
           </div>
           <div class="body">
             <div class="head">
@@ -679,16 +807,65 @@
                 <h2>${esc(p.name)}</h2>
               </div>
             </div>
+            ${switcher}
             <p class="desc">${esc(p.desc)}</p>
             <ul class="tags">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
-            ${p.note ? `<p class="note">${p.note}</p>` : ""}
+            <p class="note"${e.note ? "" : " hidden"}>${e.note || ""}</p>
+            <p class="reset"${e.reset?.length ? "" : " hidden"}>${ICON_CLOCK}<span>${esc(resetText(e.reset))}</span></p>
           </div>
           <div class="actions">
-            <a class="btn btn-primary" href="${esc(p.demo)}" target="_blank" rel="noopener">Launch demo ${ICON_OPEN}</a>
+            <a class="btn btn-primary launch" href="${esc(e.demo)}" target="_blank" rel="noopener">Launch demo ${ICON_OPEN}</a>
             <a class="btn btn-ghost" href="${esc(p.page)}" target="_blank" rel="noopener" aria-label="${esc(p.name)} product details">Details</a>
           </div>
-        </article>`,
-            ).join("");
+        </article>`;
+            }).join("");
+
+            // Reachability check per demo host (opaque no-cors request: resolves if the host answers at all)
+            const hostState = {};
+            const paintStatus = (card, url) => {
+                const dot = card.querySelector(".status");
+                const state = hostState[url];
+                if (state) dot.dataset.state = state;
+                else delete dot.dataset.state;
+                dot.title = state === "up" ? "Online" : state === "down" ? "Not responding" : "Checking…";
+            };
+            const setEdition = (card, id) => {
+                const p = PRODUCTS.find((x) => x.id === card.dataset.id);
+                const e = edition(p, id);
+                card.dataset.edition = e.id;
+                card.querySelector(".url").textContent = host(e.demo);
+                card.querySelector(".launch").href = e.demo;
+                const note = card.querySelector(".note");
+                note.innerHTML = e.note || "";
+                note.hidden = !e.note;
+                const reset = card.querySelector(".reset");
+                reset.querySelector("span").textContent = resetText(e.reset);
+                reset.hidden = !e.reset?.length;
+                card.querySelectorAll(".edition button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.edition === e.id)));
+                paintStatus(card, e.demo);
+            };
+            grid.querySelectorAll(".card").forEach((card) => setEdition(card, "self"));
+            grid.addEventListener("click", (ev) => {
+                const btn = ev.target.closest(".edition button");
+                if (btn) setEdition(btn.closest(".card"), btn.dataset.edition);
+            });
+            PRODUCTS.flatMap((p) => p.editions.map((e) => e.demo)).forEach((url) => {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 8000);
+                fetch(url, { mode: "no-cors", cache: "no-store", signal: ctrl.signal })
+                    .then(() => (hostState[url] = "up"))
+                    .catch(() => (hostState[url] = "down"))
+                    .finally(() => {
+                        clearTimeout(timer);
+                        grid.querySelectorAll(".card").forEach((card) => {
+                            const p = PRODUCTS.find((x) => x.id === card.dataset.id);
+                            if (edition(p, card.dataset.edition).demo === url) paintStatus(card, url);
+                        });
+                    });
+            });
+
+            const demoCount = PRODUCTS.reduce((n, p) => n + p.editions.length, 0);
+            document.getElementById("demo-count").textContent = `${demoCount} demos running live`;
 
             // Filters
             const nav = document.getElementById("filters");
@@ -704,23 +881,8 @@
                 nav.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === btn)));
                 grid.querySelectorAll(".card").forEach((card) => {
                     card.hidden = id !== "all" && !card.dataset.cats.split(" ").includes(id);
+                    if (id === "saas" && !card.hidden) setEdition(card, "saas");
                 });
-            });
-
-            // Reachability check (opaque no-cors request: resolves if the host answers at all)
-            document.querySelectorAll(".status[data-host]").forEach((dot) => {
-                const ctrl = new AbortController();
-                const timer = setTimeout(() => ctrl.abort(), 8000);
-                fetch(dot.dataset.host, { mode: "no-cors", cache: "no-store", signal: ctrl.signal })
-                    .then(() => {
-                        dot.dataset.state = "up";
-                        dot.title = "Online";
-                    })
-                    .catch(() => {
-                        dot.dataset.state = "down";
-                        dot.title = "Not responding";
-                    })
-                    .finally(() => clearTimeout(timer));
             });
 
             document.getElementById("year").textContent = new Date().getFullYear();
