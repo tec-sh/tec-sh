@@ -75,6 +75,11 @@
             }
             a {
                 color: inherit;
+                text-underline-offset: 6px;
+                text-decoration-style: dotted;
+            }
+            a:hover {
+                text-decoration-style: solid;
             }
             .wrap {
                 max-width: 1160px;
@@ -133,7 +138,7 @@
             /* Hero */
             .hero {
                 padding: 56px 0 40px;
-                max-width: 760px;
+                max-width: 800px;
             }
             .eyebrow {
                 display: inline-flex;
@@ -188,7 +193,7 @@
                 margin: 0;
                 font-size: 18px;
                 color: var(--ink-2);
-                max-width: 700px;
+                max-width: 780px;
                 text-wrap: pretty;
             }
 
@@ -576,6 +581,11 @@
                 font-size: 14px;
                 color: var(--ink-3);
             }
+            @media (max-width: 700px) {
+                footer {
+                    justify-content: center;
+                }
+            }
             footer a {
                 color: var(--ink-2);
                 text-decoration: none;
@@ -614,7 +624,7 @@
                 <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> <span id="demo-count">Demos running live</span></span>
                 <h1>Try it before you buy it. <em>Every product, fully working.</em></h1>
                 <p class="lede">
-                    Each demo is a real installation loaded with sample data. Log in, create records, run reports and explore every screen —
+                    Each demo is a real installation loaded with sample data. Log in, create records, run reports and explore every screen,
                     nothing you do here affects anyone else for long.
                 </p>
             </section>
@@ -642,8 +652,8 @@
             </section>
 
             <footer>
-                <span>© <span id="year">2026</span> Tecdiary. All rights reserved.</span>
-                <a href="https://tecdiary.com" rel="noopener">tecdiary.com</a>
+                <span>© <span id="year">2026</span> Tecdiary IT Solutions. All rights reserved.</span>
+                <a href="https://tecdiary.com" rel="noopener">Desktop, Mobile & Web App Development</a>
             </footer>
         </div>
 
@@ -679,8 +689,8 @@
                 },
                 {
                     id: "invoices",
-                    name: "Invoices",
-                    short: "Modern Invoice Manager",
+                    name: "Modern Invoice Manager",
+                    short: "Invoices",
                     icon: "icons/invoices.svg",
                     cats: ["invoicing"],
                     category: "Invoicing",
@@ -725,8 +735,8 @@
                 },
                 {
                     id: "wims",
-                    name: "WIMS",
-                    short: "Warehouse Inventory Management",
+                    name: "Inventory Management",
+                    short: "WIMS",
                     icon: "icons/wims.png",
                     cats: ["inventory"],
                     category: "Inventory",
